@@ -5,20 +5,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+
+    /* Brand Palette */
+    --brand-blue: #3236b8;
+    --brand-purple: #42489e;
+    --brand-blue-alt: #2188c8;
+    --brand-cyan: #4fcbd8;
+    --brand-orange: #ec5b2b;
+    --brand-orange-alt: #d07b3e;
+
+    /* --bg-brand-blue:#2188c8; */
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.147 0.004 49.25);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.147 0.004 49.25);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.147 0.004 49.25);
-    --primary: oklch(0.553 0.195 38.402);
+    --primary: 243 57% 46%;
     --primary-foreground: oklch(0.98 0.016 73.684);
     --secondary: oklch(0.967 0.001 286.375);
     --secondary-foreground: oklch(0.21 0.006 285.885);
     --muted: oklch(0.97 0.001 106.424);
     --muted-foreground: oklch(0.553 0.013 58.071);
-    --accent: oklch(0.97 0.001 106.424);
-    --accent-foreground: oklch(0.216 0.006 56.043);
+    --accent: 14 84% 54%;
+    --accent-foreground: oklch(0.98 0.016 73.684);
     --destructive: oklch(0.577 0.245 27.325);
     --border: oklch(0.923 0.003 48.717);
     --input: oklch(0.923 0.003 48.717);
@@ -37,6 +48,9 @@
     --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
     --sidebar-border: oklch(0.923 0.003 48.717);
     --sidebar-ring: oklch(0.709 0.01 56.259);
+
+    --radius: 0.625rem;
+    --font-plus-jakarta: 'Plus Jakarta Sans', sans-serif;
 }
 
 .dark {
@@ -74,6 +88,14 @@
 }
 
 @theme inline {
+    /* Custom Brand Colors */
+    --color-brand-blue: var(--brand-blue);
+    --color-brand-purple: var(--brand-purple);
+    --color-brand-blue-alt: var(--brand-blue-alt);
+    --color-brand-cyan: var(--brand-cyan);
+    --color-brand-orange: var(--brand-orange);
+    --color-brand-orange-alt: var(--brand-orange-alt);
+
     --font-sans: var(--font-sans);
     --font-heading: var(--font-heading);
     --color-sidebar-ring: var(--sidebar-ring);

@@ -1,8 +1,9 @@
 import { Geist, Geist_Mono, Inter, Montserrat } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
+import Navbar from "./components/common/Navbar";
+import Footer from "./components/common/Footer";
 
 const montserratHeading = Montserrat({subsets:['latin'],variable:'--font-heading'});
 
@@ -25,7 +26,9 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable, montserratHeading.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )
