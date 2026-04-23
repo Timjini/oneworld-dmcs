@@ -15,7 +15,7 @@ const OperatorGrid: React.FC = () => {
               Our Synergy Network
             </h2>
             <h3 className="text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl">
-              6 Experts.{" "}
+              Six Experts.{" "}
               <span className="text-brand-blue">One Vision.</span>
             </h3>
           </div>
