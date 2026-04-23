@@ -1,3 +1,4 @@
+const MAIN_URL = "https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/"
 export interface Employee {
   name: string
   role: string
@@ -21,14 +22,15 @@ export interface Company {
 }
 
 export const companies: Record<string, Company> = {
-  "Bendix Tours": {
+  "bendix-tours": {
     id: "1",
     name: "Bendix Tours",
-    location: "Barcelona, Spain",
+    location: "Madeira Portugal",
     slug: "bendix-tours",
-    logo_path: "https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/bendix-tours-logo-circle.jpg",
+    logo_path: `${MAIN_URL}bendix-tours-logo-circle.jpg`,
     slogan: "We offer our services and expertise; Madeira offers the rest...",
-    tag_line: "Bendix Tours is an incoming travel Agency located in Madeira Island, since 1991.",
+    tag_line:
+      "Bendix Tours is an incoming travel Agency located in Madeira Island, since 1991.",
     description:
       "We are a family run business with a strong Know-How to our island.We represent several international tour operators, with whom we have kept excellent cooperation along these years.",
     contact_person: "Rita Bendix",
@@ -39,34 +41,52 @@ export const companies: Record<string, Company> = {
       {
         name: "Rita Bendix",
         role: "Product Manager & Partner",
-        image: "employees/alejandro.jpg",
-      }
+        image: `${MAIN_URL}rita-bendix.png`,
+      },
     ],
   },
-  "olympic-odyssey": {
+  nexus: {
     id: "2",
-    name: "Olympic Odyssey",
-    location: "Athens, Greece",
-    slug: "olympic-odyssey",
-    logo_path: "logos/olympic-odyssey.png",
-    slogan: "Where Myth Meets the Sea.",
-    tag_line: "Bendix Tours is an incoming travel Agency located in Madeira Island, since 1991.",
+    name: "Nexus",
+    location: "Portugal",
+    slug: "nexus",
+    logo_path: `${MAIN_URL}nexus.png`,
+    slogan:
+      "Give us a motto or general idea, and we’ll start from there to build you an original program!",
+    tag_line:
+      "Nexus arises as a link to connect people to experiences in Portugal and Spain!",
     description:
-      "Olympic Odyssey is Greece's premier destination specialist, offering bespoke access...",
-    contact_person: "Nikolas Papadakis",
-    phone_1: "+30 210 987 6543",
-    email: "concierge@olympic-odyssey.gr",
-    website: "www.olympic-odyssey.gr",
+      "As an Incoming agency specialized in the group segment, we’re able to organize and manage all services associated to a group, regardless of its motivation: culture & leisure, religious or pilgrimages, city breaks, corporate & incentives, nature and much more!",
+    contact_person: "Iris Lebre",
+    phone_1: "+ 351 913 767 448",
+    email: "iris@nexus-incoming.com",
+    website: "www.nexus-incoming.com",
     employees: [
       {
-        name: "Nikolas Papadakis",
-        role: "Founder & CEO",
-        image: "employees/nikolas.jpg",
+        name: "Iris Lebre",
+        role: "Managing Partner & Commercial Director",
+        image: `${MAIN_URL}Iris.jpg`,
       },
+    ],
+  },
+  "ouest-destinations-italie": {
+    id: "3",
+    name:"",
+    location: "",
+    slug: "",
+    logo_path: `${MAIN_URL}ouest-destinations-italie.png`,
+    slogan: "",
+    tag_line: "",
+    description: "",
+    contact_person: "",
+    phone_1: "",
+    email: "",
+    website: "",
+    employees: [
       {
-        name: "Chloe Dimitriou",
-        role: "Head of Guest Experience",
-        image: "employees/chloe.jpg",
+        name: "",
+        role: "Managing Partner & Commercial Director",
+        image: `${MAIN_URL}Iris.jpg`,
       },
     ],
   },

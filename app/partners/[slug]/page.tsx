@@ -3,15 +3,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Phone, Mail, Globe, ArrowRight } from "lucide-react"
-import { companies, Company } from "@/app/data/companies";
-
+import { companies, Company } from "@/app/data/companies"
 
 async function getCompanyData(slug: string): Promise<Company | null> {
-  const company = companies[slug];
+  const company = companies[slug]
+  console.log("company", company)
+  if (!company) return null
 
-  if (!company) return null;
-
-  return company;
+  return companies[slug] || null
 }
 
 export default async function CompanyPage({
@@ -31,7 +30,7 @@ export default async function CompanyPage({
       {/* --- Hero Section --- */}
       <section className="relative flex h-[70vh] min-h-[400px] items-center justify-center overflow-hidden bg-gray-900">
         <Image
-          src={`/storage/${company.logo_path}`}
+          src={company.logo_path}
           alt={company.name}
           fill
           className="absolute inset-0 object-cover opacity-50"
@@ -86,7 +85,7 @@ export default async function CompanyPage({
                 <Link href="/">
                   <Image
                     className="h-16 w-auto object-contain"
-                    src={`/storage/${company.logo_path}`}
+                    src={company.logo_path}
                     alt="Logo"
                     width={200}
                     height={64}
@@ -108,10 +107,10 @@ export default async function CompanyPage({
               </div>
               <div className="mt-10">
                 <a
-                  href={`mailto:info@${company.slug}.com`}
+                  href={`mailto:${company.email}`}
                   className="inline-flex items-center gap-2 rounded-full bg-[#3b82f6] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#f97316]"
                 >
-                  Contact {company.location} Team <ArrowRight size={16} />
+                  Contact Our Team <ArrowRight size={16} />
                 </a>
               </div>
             </div>
@@ -126,7 +125,7 @@ export default async function CompanyPage({
                   }`}
                 >
                   <Image
-                    src={`/storage/${member.image}`}
+                    src={member.image}
                     alt={member.name}
                     fill
                     className="object-cover transition duration-500 group-hover:scale-110"
