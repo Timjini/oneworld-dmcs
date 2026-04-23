@@ -43,13 +43,6 @@ const ContactSection: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Trust Quote */}
-            <div className="p-6 bg-gray-50 rounded-3xl border-l-4 border-brand-cyan">
-              <p className="text-gray-700 italic">
-                "We combine deep local knowledge with global standards to ensure your travel experience is seamless."
-              </p>
-            </div>
           </div>
 
           {/* Right Side: The Form */}

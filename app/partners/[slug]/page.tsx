@@ -3,70 +3,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Phone, Mail, Globe, ArrowRight } from "lucide-react"
+import { companies, Company } from "@/app/data/companies";
 
-// --- Types ---
-interface Employee {
-  name: string
-  role: string
-  image: string
-}
-
-interface Company {
-  name: string
-  location: string
-  logo_path: string
-  slogan: string
-  description: string
-  slug: string
-  contact_person: string
-  phone_1: string
-  email: string
-  website: string
-  employees: Employee[]
-}
 
 async function getCompanyData(slug: string): Promise<Company | null> {
-  // Simulating an API call
-  const companies: Record<string, Company> = {
-    "mediterranean-spirit": {
-      name: "Mediterranean Spirit",
-      location: "Barcelona, Spain",
-      slug: "mediterranean-spirit",
-      logo_path: "logos/med-spirit.png",
-      slogan: "Crafting Unforgettable Iberian Journeys.",
-      description:
-        "With over two decades of local expertise, we specialize in high-end cultural immersions across the Iberian Peninsula. From private tours of the Alhambra to exclusive wine tastings in the Douro Valley, we ensure every itinerary is a masterpiece of local culture and luxury logistics.",
-      contact_person: "Alejandro Sanz",
-      phone_1: "+34 932 123 456",
-      email: "info@mediterranean-spirit.com",
-      website: "www.mediterranean-spirit.com",
-      employees: [
-        {
-          name: "Alejandro Sanz",
-          role: "Managing Director",
-          image: "employees/alejandro.jpg",
-        },
-        {
-          name: "Elena Rodriguez",
-          role: "Operations Manager",
-          image: "employees/elena.jpg",
-        },
-        {
-          name: "Marc Vila",
-          role: "Luxury Travel Designer",
-          image: "employees/marc.jpg",
-        },
-        {
-          name: "Sofia Gomez",
-          role: "Concierge Lead",
-          image: "employees/sofia.jpg",
-        },
-      ],
-    },
-  }
+  const company = companies[slug];
 
-  // Return the company matching the slug, or null if not found
-  return companies[slug] || null
+  if (!company) return null;
+
+  return company;
 }
 
 export default async function CompanyPage({
