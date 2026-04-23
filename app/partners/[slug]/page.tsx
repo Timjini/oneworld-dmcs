@@ -1,128 +1,292 @@
-// app/partners/[slug]/page.tsx
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { CheckCircle2, Globe, Mail, MapPin, ArrowLeft } from 'lucide-react';
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { notFound } from "next/navigation"
+import { Phone, Mail, Globe, ArrowRight } from "lucide-react"
 
-// This would ideally be in a shared /data folder
-const operators = [
-  {
-    slug: "mediterranean-spirit",
-    title: "Mediterranean Spirit",
-    expertise: "Spain & Portugal",
-    description: "Specializing in high-end cultural immersions across the Iberian Peninsula, focusing on heritage and luxury gastronomy.",
-    longDescription: "With over 20 years of experience, Mediterranean Spirit provides unparalleled access to the hidden gems of Spain and Portugal. From private tours of the Alhambra to exclusive wine tastings in the Douro Valley, we ensure every itinerary is a masterpiece of local culture.",
-    image: "/img/dest-spain.jpg",
-    stats: { tours: "500+", guides: "45", years: "22" }
-  },
-  // ... other operators
-];
-
-async function getOperator(slug: string) {
-  const operator = operators.find((op) => op.slug === slug);
-  if (!operator) return null;
-  return operator;
+// --- Types ---
+interface Employee {
+  name: string
+  role: string
+  image: string
 }
 
-export default async function OperatorPage({ params }: { params: { slug: string } }) {
-  const operator = await getOperator(params.slug);
+interface Company {
+  name: string
+  location: string
+  logo_path: string
+  slogan: string
+  description: string
+  slug: string
+  contact_person: string
+  phone_1: string
+  email: string
+  website: string
+  employees: Employee[]
+}
 
-  if (!operator) {
-    notFound();
+async function getCompanyData(slug: string): Promise<Company | null> {
+  // Simulating an API call
+  const companies: Record<string, Company> = {
+    "mediterranean-spirit": {
+      name: "Mediterranean Spirit",
+      location: "Barcelona, Spain",
+      slug: "mediterranean-spirit",
+      logo_path: "logos/med-spirit.png",
+      slogan: "Crafting Unforgettable Iberian Journeys.",
+      description:
+        "With over two decades of local expertise, we specialize in high-end cultural immersions across the Iberian Peninsula. From private tours of the Alhambra to exclusive wine tastings in the Douro Valley, we ensure every itinerary is a masterpiece of local culture and luxury logistics.",
+      contact_person: "Alejandro Sanz",
+      phone_1: "+34 932 123 456",
+      email: "info@mediterranean-spirit.com",
+      website: "www.mediterranean-spirit.com",
+      employees: [
+        {
+          name: "Alejandro Sanz",
+          role: "Managing Director",
+          image: "employees/alejandro.jpg",
+        },
+        {
+          name: "Elena Rodriguez",
+          role: "Operations Manager",
+          image: "employees/elena.jpg",
+        },
+        {
+          name: "Marc Vila",
+          role: "Luxury Travel Designer",
+          image: "employees/marc.jpg",
+        },
+        {
+          name: "Sofia Gomez",
+          role: "Concierge Lead",
+          image: "employees/sofia.jpg",
+        },
+      ],
+    },
+  }
+
+  // Return the company matching the slug, or null if not found
+  return companies[slug] || null
+}
+
+export default async function CompanyPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const company = await getCompanyData(slug)
+
+  if (!company) {
+    notFound()
   }
 
   return (
-    <main className="min-h-screen bg-white pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Back Button */}
-        <Link href="/#operators" className="inline-flex items-center gap-2 text-gray-500 hover:text-brand-blue mb-12 transition-colors">
-          <ArrowLeft size={20} />
-          <span className="font-bold">Back to Network</span>
-        </Link>
+    <main className="min-h-screen bg-white">
+      {/* --- Hero Section --- */}
+      <section className="relative flex h-[70vh] min-h-[400px] items-center justify-center overflow-hidden bg-gray-900">
+        <Image
+          src={`/storage/${company.logo_path}`}
+          alt={company.name}
+          fill
+          className="absolute inset-0 object-cover opacity-50"
+          priority
+        />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          
-          {/* Left: Content (8 cols) */}
-          <div className="lg:col-span-8">
-            <span className="bg-brand-orange/10 text-brand-orange text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-widest">
-              {operator.expertise} Specialist
-            </span>
-            
-            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mt-6 mb-8 tracking-tight">
-              {operator.title}
-            </h1>
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/30"></div>
 
-            <div className="relative aspect-video rounded-3xl overflow-hidden mb-12 shadow-2xl">
-              <Image 
-                src={operator.image} 
-                alt={operator.title} 
-                fill 
-                className="object-cover"
-              />
+        {/* Hero Blob - Animated/Decorative */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 z-0 transform-gpu overflow-hidden blur-3xl"
+        >
+          <div
+            style={{
+              clipPath:
+                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+            }}
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[72.1875rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3b82f6] to-[#f97316] opacity-40 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+          ></div>
+        </div>
+
+        <div className="relative z-10 px-6 text-center">
+          <span className="mb-4 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-bold tracking-widest text-white uppercase backdrop-blur-md">
+            Destination Expert
+          </span>
+          <h1 className="text-5xl font-bold text-white drop-shadow-2xl md:text-7xl">
+            {company.name}
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
+            Providing high-end travel and management solutions across{" "}
+            {company.location}.
+          </p>
+        </div>
+      </section>
+
+      {/* --- Content Section --- */}
+      <section className="relative overflow-hidden bg-white py-24">
+        {/* Decorative Background Blur */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 right-0 -z-10 h-96 w-96 -translate-y-1/2 opacity-20 blur-3xl"
+        >
+          <div className="aspect-square rounded-full bg-gradient-to-br from-[#3b82f6] to-[#f97316]"></div>
+        </div>
+
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-center gap-x-16 gap-y-16 lg:grid-cols-2">
+            <div className="max-w-xl">
+              <div className="mb-8">
+                <Link href="/">
+                  <Image
+                    className="h-16 w-auto object-contain"
+                    src={`/storage/${company.logo_path}`}
+                    alt="Logo"
+                    width={200}
+                    height={64}
+                  />
+                </Link>
+              </div>
+              <h2 className="text-base font-semibold tracking-wider text-[#f97316] uppercase">
+                {company.location}
+              </h2>
+              <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+                {company.name}:{" "}
+                <span className="text-[#3b82f6]">Experience.</span>
+              </p>
+              <div className="mt-6 space-y-6 text-lg leading-8 text-gray-600">
+                <p className="font-medium text-gray-900 italic">
+                  {company.slogan}
+                </p>
+                <p>{company.description}</p>
+              </div>
+              <div className="mt-10">
+                <a
+                  href={`mailto:info@${company.slug}.com`}
+                  className="inline-flex items-center gap-2 rounded-full bg-[#3b82f6] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#f97316]"
+                >
+                  Contact {company.location} Team <ArrowRight size={16} />
+                </a>
+              </div>
             </div>
 
-            <div className="prose prose-lg max-w-none text-gray-600">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">About the Partner</h3>
-              <p className="text-xl leading-relaxed mb-6">
-                {operator.description}
-              </p>
-              <p className="leading-relaxed">
-                {operator.longDescription}
-              </p>
-            </div>
-
-            {/* Expertise Checklist */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-              {["Private Guided Tours", "Luxury Logistics", "Corporate Events", "Bespoke Itineraries"].map((item) => (
-                <div key={item} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl">
-                  <CheckCircle2 className="text-brand-cyan" size={24} />
-                  <span className="font-bold text-gray-700">{item}</span>
+            {/* Employee Grid */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+              {company.employees.map((member, index) => (
+                <div
+                  key={index}
+                  className={`group relative aspect-square overflow-hidden rounded-2xl bg-gray-100 ${
+                    index !== 0 && index % 2 !== 0 ? "mt-8" : ""
+                  }`}
+                >
+                  <Image
+                    src={`/storage/${member.image}`}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-gray-900/80 via-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    <p className="font-bold text-white">{member.name}</p>
+                    <p className="text-sm text-white/70">{member.role}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Right: Sidebar / Quick Contact (4 cols) */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="bg-brand-blue rounded-3xl p-8 text-white shadow-xl shadow-brand-blue/20">
-              <h4 className="text-2xl font-bold mb-6">Partner Stats</h4>
-              <div className="space-y-6">
-                <div className="flex justify-between border-b border-white/20 pb-4">
-                  <span className="opacity-80">Annual Tours</span>
-                  <span className="font-bold text-xl">{operator.stats.tours}</span>
-                </div>
-                <div className="flex justify-between border-b border-white/20 pb-4">
-                  <span className="opacity-80">Local Guides</span>
-                  <span className="font-bold text-xl">{operator.stats.guides}</span>
-                </div>
-                <div className="flex justify-between border-b border-white/20 pb-4">
-                  <span className="opacity-80">Industry Experience</span>
-                  <span className="font-bold text-xl">{operator.stats.years} Years</span>
-                </div>
+      {/* --- Contact Section --- */}
+      <section className="relative overflow-hidden bg-gray-50 py-24">
+        <div className="pointer-events-none absolute bottom-0 left-1/2 h-1/2 w-full -translate-x-1/2 bg-[#3b82f6] opacity-5 blur-[120px]"></div>
+
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              <div className="flex flex-col justify-center bg-gradient-to-br from-[#3b82f6] to-[#f97316] p-12 text-white">
+                <h2 className="text-3xl font-bold tracking-tight">
+                  Ready to plan your next experience?
+                </h2>
+                <p className="mt-4 text-lg text-white/80">
+                  Reach out to our {company.location} office for tailored
+                  destination management programs.
+                </p>
               </div>
-              
-              <Link 
-                href="/#contact"
-                className="mt-8 block w-full bg-white text-brand-blue text-center py-4 rounded-xl font-extrabold hover:bg-brand-orange hover:text-white transition-all shadow-lg"
-              >
-                Inquire via One World
-              </Link>
-            </div>
 
-            <div className="bg-gray-50 rounded-3xl p-8 border border-gray-100">
-              <h4 className="text-xl font-bold text-gray-900 mb-6">Certifications</h4>
-              <div className="flex flex-wrap gap-4">
-                <div className="w-16 h-16 bg-white rounded-xl border border-gray-200 flex items-center justify-center text-gray-300">ISO</div>
-                <div className="w-16 h-16 bg-white rounded-xl border border-gray-200 flex items-center justify-center text-gray-300">ASTA</div>
-                <div className="w-16 h-16 bg-white rounded-xl border border-gray-200 flex items-center justify-center text-gray-300">IATA</div>
+              <div className="bg-white p-12">
+                <div className="space-y-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      {company.contact_person}
+                    </h3>
+                    <p className="text-sm font-semibold tracking-wider text-[#f97316] uppercase">
+                      Primary Contact
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* Phone */}
+                    <div className="group flex items-center gap-4">
+                      <div className="rounded-xl bg-gray-50 p-3 text-[#3b82f6] transition-colors duration-300 group-hover:bg-[#3b82f6] group-hover:text-white">
+                        <Phone size={20} />
+                      </div>
+                      <div className="text-gray-600">
+                        <p className="text-xs font-bold text-gray-400 uppercase">
+                          Office / Mobile
+                        </p>
+                        <p className="font-medium">
+                          {company.phone_1}{" "}
+                          <span className="mx-2 text-gray-300">|</span>{" "}
+                          {company.phone_1}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div className="group flex items-center gap-4">
+                      <div className="rounded-xl bg-gray-50 p-3 text-[#3b82f6] transition-colors duration-300 group-hover:bg-[#3b82f6] group-hover:text-white">
+                        <Mail size={20} />
+                      </div>
+                      <div className="text-gray-600">
+                        <p className="text-xs font-bold text-gray-400 uppercase">
+                          Email Address
+                        </p>
+                        <a
+                          href={`mailto:${company.email}`}
+                          className="font-medium transition-colors hover:text-[#f97316]"
+                        >
+                          {company.email}
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Website */}
+                    <div className="group flex items-center gap-4">
+                      <div className="rounded-xl bg-gray-50 p-3 text-[#3b82f6] transition-colors duration-300 group-hover:bg-[#3b82f6] group-hover:text-white">
+                        <Globe size={20} />
+                      </div>
+                      <div className="text-gray-600">
+                        <p className="text-xs font-bold text-gray-400 uppercase">
+                          Website
+                        </p>
+                        <a
+                          href={`https://${company.website}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium transition-colors hover:text-[#f97316]"
+                        >
+                          {company.website}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
-      </div>
+      </section>
     </main>
-  );
+  )
 }
