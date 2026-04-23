@@ -21,7 +21,7 @@ const BrandCloud: React.FC = () => {
     <section className="bg-gray-50 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="text-center text-sm font-bold leading-8 tracking-widest text-brand-orange uppercase">
-          Who Are We?
+          Our Partners
         </h2>
 
         {/* The Grid Container */}
