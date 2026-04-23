@@ -25,8 +25,9 @@ async function getOperator(slug: string) {
   return operator;
 }
 
-export default async function OperatorPage({ params }: { params: { slug: string } }) {
-  const operator = await getOperator(params.slug);
+export default async function OperatorPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const operator = await getOperator(slug);
 
   if (!operator) {
     notFound();
