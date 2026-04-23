@@ -7,29 +7,30 @@ const destinations = [
     name: 'Spain',
     tagline: 'Discover the Soul of Andalusia',
     description: 'Where every corner tells a story of passion and history.',
-    image: '/img/dest-spain.jpg', // Replace with your vibrant image (e.g., Alhambra or Seville)
-    link: '/destinations/spain',
+    image: 'https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/shutterstock_111640076%20madrid.jpg',
+    link: '/destinations',
   },
   {
     name: 'Portugal',
     tagline: "The Ocean's Whisper in Lisbon",
     description: 'Where history meets the coast and traditional trams climb golden streets.',
-    image: '/img/dest-portugal.jpg', // Replace with your image (e.g., Lisbon tram or Algarve coast)
-    link: '/destinations/portugal',
+    image: 'https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/shutterstock_86309014.jpg', 
+    link: '/destinations',
   },
   {
-    name: 'Morocco',
-    tagline: 'Whispers of the Sahara',
-    description: 'A journey into timeless traditions, vibrant souks, and endless dunes.',
-    image: '/img/dest-morocco.jpg', // Replace with your image (e.g., Sahara dunes or Blue city)
-    link: '/destinations/morocco',
+    name: 'Greece',
+    tagline: 'Cradle of Legends & Azure Horizons',
+    image: "https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/DSC_2828.jpg",
+      description:
+        "Ancient history meets the turquoise serenity of the Cyclades and the Aegean Sea.",
+    link: '/destinations',
   },
   {
     name: 'Egypt',
     tagline: 'Eternal Wonders of the Nile',
     description: 'Where ancient mysteries unfold under the watch of the Great Pyramids.',
-    image: '/img/dest-egypt.jpg', // Replace with your image (e.g., Giza Pyramids or Luxor)
-    link: '/destinations/egypt',
+    image: 'https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/Pafos_Tombs_of_the_kings2.jpg',
+    link: '/destinations',
   },
 ];
 

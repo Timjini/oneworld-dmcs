@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
       {/* 1. Touristic Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/img/hero-bg.jpg" // Replace with your vibrant scenic image (e.g., panoramic view of coast/mountains)
+          src="https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/shutterstock_388289746%20catalunha.jpg"
           alt="Scenic travel destination background"
           fill
           priority
