@@ -8,12 +8,12 @@ interface Brand {
 }
 
 const brands: Brand[] = [
-  { id: 1, name: 'Brand One', image: '/img/brands/logo1.png' },
-  { id: 2, name: 'Brand Two', image: '/img/brands/logo2.png' },
-  { id: 3, name: 'Brand Three', image: '/img/brands/logo3.png' },
-  { id: 4, name: 'Brand Four', image: '/img/brands/logo4.png' },
-  { id: 5, name: 'Brand Five', image: '/img/brands/logo5.png' },
-  { id: 6, name: 'Brand Six', image: '/img/brands/logo6.png' },
+  { id: 1, name: 'Brand One', image: 'https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: 2, name: 'Brand Two', image: 'https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: 3, name: 'Brand Three', image: 'https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: 4, name: 'Brand Four', image: 'https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: 5, name: 'Brand Five', image: 'https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+  { id: 6, name: 'Brand Six', image: 'https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
 ];
 
 const BrandCloud: React.FC = () => {
