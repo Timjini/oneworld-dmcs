@@ -2,9 +2,11 @@ import React from "react"
 import Link from "next/link"
 import { ArrowRight, Globe, ShieldCheck } from "lucide-react"
 import { companies, Company } from "@/app/data/companies"
+import shuffleArray from "@/app/utils"
 
 const OperatorGrid: React.FC = () => {
   const companyList = Object.values(companies)
+  const shuffledCompanies = shuffleArray(companyList);
   return (
     <section className="bg-white px-6 py-24 font-sans">
       <div className="mx-auto max-w-7xl">
@@ -23,7 +25,7 @@ const OperatorGrid: React.FC = () => {
 
         {/* 3-Column Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {companyList.map((operator: Company) => (
+          {shuffledCompanies.map((operator: Company) => (
             <div
               key={operator.id}
               className="group flex flex-col justify-between rounded-3xl border border-gray-100 bg-gray-50 p-8 transition-all duration-300 hover:border-brand-blue/20 hover:bg-white hover:shadow-2xl hover:shadow-brand-blue/10"

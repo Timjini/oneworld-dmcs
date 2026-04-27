@@ -143,7 +143,7 @@ export const companies: Record<string, Company> = {
     description: "To craft unforgettable travel experiences that connect people with the rich cultures, stunning landscapes, and authentic moments that make Morocco, Portugal, and Spain so extraordinary.",
     contact_person: "",
     phone_1: "+212 669 035 305",
-    email: "info@emotions-morocco.com",
+    email: "booking@emotions-morocco.com",
     website: "https://emotions-morocco.com/",
     employees: [
       {

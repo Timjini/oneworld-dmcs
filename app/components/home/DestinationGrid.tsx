@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import shuffleArray from '@/app/utils';
 
 const destinations = [
   {
@@ -35,6 +36,8 @@ const destinations = [
 ];
 
 const DestinationGrid: React.FC = () => {
+
+   const shuffledDestinations = shuffleArray(destinations);
   return (
     <section className="bg-gray-50 py-24 px-6 font-sans">
       <div className="max-w-7xl mx-auto">
@@ -54,7 +57,7 @@ const DestinationGrid: React.FC = () => {
 
         {/* 2x2 Inspired Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {destinations.map((dest, index) => (
+          {shuffledDestinations.map((dest, index) => (
             <Link 
               key={index} 
               href={dest.link}
