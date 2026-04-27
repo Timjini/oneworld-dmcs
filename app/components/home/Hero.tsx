@@ -14,7 +14,6 @@ const Hero: React.FC = () => {
           priority
           className="object-cover object-center"
           sizes="100vw"
-          quality={90}
         />
         {/* Suble overlay for text readability and sophisticated look */}
         <div className="absolute inset-0 bg-gray-900/40 backdrop-blur-[1.5px]"></div>

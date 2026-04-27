@@ -51,17 +51,7 @@ const destinations: Destination[] = [
     description:
       "Vibrant souks, Atlas mountain retreats, and the golden dunes of the Sahara.",
     operatorCount: 6,
-  },
-  {
-    id: "5",
-    name: "Egypt",
-    slug: "egypt",
-    image:
-      "https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/Pafos_Tombs_of_the_kings2.jpg",
-    description:
-      "Timeless wonders along the Nile, from the Pyramids to the Valley of the Kings.",
-    operatorCount: 9,
-  },
+  }
 ]
 
 export default function DestinationsPage() {

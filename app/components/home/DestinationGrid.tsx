@@ -26,9 +26,9 @@ const destinations = [
     link: '/destinations',
   },
   {
-    name: 'Egypt',
-    tagline: 'Eternal Wonders of the Nile',
-    description: 'Where ancient mysteries unfold under the watch of the Great Pyramids.',
+    name: 'Morocco',
+    tagline: 'The country of lights',
+    description: 'Vibrant souks, Atlas mountain retreats, and the golden dunes of the Sahara.',
     image: 'https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/Pafos_Tombs_of_the_kings2.jpg',
     link: '/destinations',
   },
