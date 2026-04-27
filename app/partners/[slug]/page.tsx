@@ -2,7 +2,7 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Phone, Mail, Globe, ArrowRight } from "lucide-react"
+import { Phone, Mail, Globe, ArrowRight, MapPin } from "lucide-react"
 import { companies, Company } from "@/app/data/companies"
 
 async function getCompanyData(slug: string): Promise<Company | null> {
@@ -62,8 +62,7 @@ export default async function CompanyPage({
             {company.name}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
-            Providing high-end travel and management solutions across{" "}
-            {company.location}.
+            {company.slogan}
           </p>
         </div>
       </section>
@@ -92,13 +91,7 @@ export default async function CompanyPage({
                   />
                 </Link>
               </div>
-              <h2 className="text-base font-semibold tracking-wider text-[#f97316] uppercase">
-                {company.location}
-              </h2>
-              <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                {company.name}:{" "}
-                <span className="text-[#3b82f6]">Experience.</span>
-              </p>
+             
               <div className="mt-6 space-y-6 text-lg leading-8 text-gray-600">
                 <p className="font-medium text-gray-900 italic">
                   {company.slogan}
@@ -148,14 +141,34 @@ export default async function CompanyPage({
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="flex flex-col justify-center bg-gradient-to-br from-[#3b82f6] to-[#f97316] p-12 text-white">
-                <h2 className="text-3xl font-bold tracking-tight">
-                  Ready to plan your next experience?
-                </h2>
-                <p className="mt-4 text-lg text-white/80">
-                  Reach out to our {company.location} office for tailored
-                  destination management programs.
-                </p>
+              <div className="relative h-[400px] md:h-full min-h-[350px] w-full overflow-hidden">
+                {/* Google Map Iframe */}
+                <iframe
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://www.google.com/maps/embed/v1/place?key=${process.env.GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent(
+                    company.location + " " + company.name
+                  )}&zoom=14`}
+                  className="absolute inset-0 grayscale contrast-125 opacity-80 transition-all duration-700 hover:grayscale-0 hover:opacity-100"
+                ></iframe>
+
+                {/* Overlay Label - Floating aesthetic */}
+                <div className="absolute bottom-6 left-6 z-10 max-w-xs rounded-2xl bg-white/90 p-6 shadow-2xl backdrop-blur-md border border-white">
+                  <div className="flex items-center gap-2 text-[#3b82f6] font-bold uppercase tracking-widest text-[10px] mb-2">
+                    <MapPin size={12} />
+                    Local Headquarters
+                  </div>
+                  <h2 className="text-xl font-black tracking-tight text-gray-950">
+                    {company.location}
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-500 font-medium">
+                    Visit us at {company.name}
+                  </p>
+                </div>
               </div>
 
               <div className="bg-white p-12">
