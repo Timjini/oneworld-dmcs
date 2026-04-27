@@ -1,17 +1,27 @@
-"use client"
-import React, { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 
 const Navbar: React.FC = () => {
   const [hidden, setHidden] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest: any) => {
-    const previous = scrollY.getPrevious() ?? 0;
+  const navLinks = [
+    { name: "About", href: "/about" },
+    { name: "Destinations", href: "/destinations" },
+    { name: "Partners", href: "/partners" },
+  ];
 
-    if (latest > previous && latest > 150) {
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    setIsScrolled(latest > 60);
+
+    if (latest > previous && latest > 300) {
       setHidden(true);
     } else {
       setHidden(false);
@@ -25,50 +35,81 @@ const Navbar: React.FC = () => {
         hidden: { y: "-100%" },
       }}
       animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="fixed top-0 left-0 z-50 flex h-24 w-full items-center border-b border-white/10 bg-white/80 backdrop-blur-md md:h-28 dark:bg-gray-900/80"
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
+        isScrolled 
+          ? "h-20 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm" 
+          : "h-24 bg-transparent"
+      }`}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/img/one-world-logo.png"
-            alt="Logo"
-            width={240}
-            height={100}
-            className="h-16 w-auto cursor-pointer object-contain transition-transform duration-300 hover:scale-105 sm:h-20 md:h-24 dark:brightness-200"
-            priority
-          />
-        </Link>
+      <div className="relative mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
 
-        {/* Desktop Navigation */}
-        <div className="hidden items-center gap-10 lg:flex">
-          <Link
-            href="/about"
-            className="font-semibold text-gray-800 transition-colors hover:text-brand-orange dark:text-white/90"
-          >
-            About
-          </Link>
-          <Link
-            href="/destinations"
-            className="font-semibold text-gray-800 transition-colors hover:text-brand-orange dark:text-white/90"
-          >
-            Destinations
+        {/* --- THE LARGE LOGO --- */}
+        <div className="flex-1 flex justify-start">
+          <Link href="/" className="pt-4">
+              <Image
+                src="/img/one-world-logo.png"
+                alt="One World"
+                width={400} 
+                height={160}
+                className="h-28 w-auto object-contain drop-shadow-2xl sm:h-24 md:h-24 block"
+                priority
+              />
           </Link>
         </div>
 
-        {/* Contact Button */}
-        <div className="flex items-center">
+        {/* Navigation Links */}
+        <div className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onMouseEnter={() => setHoveredPath(link.href)}
+              onMouseLeave={() => setHoveredPath(null)}
+              className={`relative px-5 py-2 text-sm font-black tracking-[0.15em] uppercase transition-colors duration-300 ${
+                isScrolled ? "text-gray-900" : "text-white"
+              }`}
+            >
+              <span className="relative z-10">{link.name}</span>
+              <AnimatePresence>
+                {hoveredPath === link.href && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className={`absolute inset-0 z-0 rounded-full ${
+                      isScrolled ? "bg-gray-100" : "bg-white/20"
+                    }`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </AnimatePresence>
+            </Link>
+          ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex-1 flex justify-end">
           <Link
             href="/contact"
-            className="rounded-full bg-brand-blue px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand-blue/20 transition-all duration-300 hover:bg-brand-blue-alt active:scale-95 sm:px-8 sm:py-3 sm:text-base"
+            className={`rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 ${
+              isScrolled 
+                ? "bg-[#3b82f6] text-white hover:bg-[#f97316] shadow-lg shadow-blue-500/20" 
+                : "bg-white text-gray-900 hover:bg-[#f97316] hover:text-white"
+            }`}
           >
-            Contact Us
+            Inquire
           </Link>
         </div>
       </div>
-    </motion.nav>
-  )
-}
 
-export default Navbar
+      {/* Subtle bottom accent line */}
+      {!isScrolled && (
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      )}
+    </motion.nav>
+  );
+};
+
+export default Navbar;

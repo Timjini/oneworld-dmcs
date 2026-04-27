@@ -10,7 +10,7 @@ export default function AboutPage() {
         {/* Cinematic Image Panel (Left/Background on mobile) */}
         <div className="absolute md:relative inset-0 md:col-span-7 h-full w-full overflow-hidden">
           <Image
-            src="/img/about/horizon-texture.jpg" // A textured, atmospheric, high-grain photo (e.g., distant mountains or ocean)
+            src="https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/shutterstock_111640076%20madrid.jpg"
             alt="One World Horizon"
             fill
             className="object-cover opacity-70 md:opacity-100"
@@ -101,7 +101,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6 order-1 lg:order-2">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(59,130,246,0.15)] group">
                 <Image
-                  src="/img/about/hands-local-map.jpg" // Something tactile and human (e.g., local hands pointing at a real map, authentic interaction)
+                  src="https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/shutterstock_86309014.jpg"
                   alt="Authentic Local Knowledge"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
