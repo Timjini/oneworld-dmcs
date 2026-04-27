@@ -5,6 +5,7 @@ import shuffleArray from '@/app/utils';
 
 const destinations = [
   {
+    id: '1',
     name: 'Spain',
     tagline: 'Discover the Soul of Andalusia',
     description: 'Where every corner tells a story of passion and history.',
@@ -12,6 +13,7 @@ const destinations = [
     link: '/destinations',
   },
   {
+    id: '2',
     name: 'Portugal',
     tagline: "The Ocean's Whisper in Lisbon",
     description: 'Where history meets the coast and traditional trams climb golden streets.',
@@ -19,6 +21,7 @@ const destinations = [
     link: '/destinations',
   },
   {
+    id: '3',
     name: 'Greece',
     tagline: 'Cradle of Legends & Azure Horizons',
     image: "https://pub-56989421c96a4a83a6c1e963a31939e6.r2.dev/oneworld/DSC_2828.jpg",
@@ -27,6 +30,7 @@ const destinations = [
     link: '/destinations',
   },
   {
+    id: '4',
     name: 'Morocco',
     tagline: 'The country of lights',
     description: 'Vibrant souks, Atlas mountain retreats, and the golden dunes of the Sahara.',
@@ -57,9 +61,9 @@ const DestinationGrid: React.FC = () => {
 
         {/* 2x2 Inspired Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {shuffledDestinations.map((dest, index) => (
+          {shuffledDestinations.map((dest:any) => (
             <Link 
-              key={index} 
+              key={dest.id} 
               href={dest.link}
               className="group relative block aspect-[16/10] overflow-hidden rounded-3xl shadow-2xl shadow-gray-200 transition-all duration-500 hover:shadow-brand-blue/20 hover:-translate-y-2"
             >
